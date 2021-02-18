@@ -5,6 +5,7 @@ const AuthorModel = require("./AuthorsSchema")
 const { authenticate } = require("../auth/tools")
 const { authorize } = require("../auth/middleware")
 
+const passport = require("passport")
 
 router.get("/", authorize,  async(req, res, next) => {
     try{
@@ -80,5 +81,32 @@ router.post("/login", async (req, res, next) => {
     next(error)
   }
 })
+
+
+router.get(
+  "/googleLogin",
+  passport.authenticate("google", { scope: ["profile", "email"] })
+)
+
+router.get(
+  "/googleRedirect",
+  passport.authenticate("google"),
+  async (req, res, next) => {
+    try {
+      res.cookie("accessToken", req.user.tokens.accessToken, {
+        httpOnly: true,
+      })
+      // res.cookie("refreshToken", req.author.tokens.refreshToken, {
+      //   httpOnly: true,
+      //   path: "/users/refreshToken",
+      // })
+
+      res.status(200).redirect("http://localhost:3000/")
+    } catch (error) {
+      next(error)
+    }
+  }
+)
+
 
 module.exports = router
