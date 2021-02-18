@@ -12,7 +12,7 @@ router.get("/", authorize,  async(req, res, next) => {
         const authors = await AuthorModel.find(req.query)
         res.send(authors)
     } catch(error){
-        console.log(error)
+        console.log('get all', error)
         next(error)
     }
 })
@@ -65,7 +65,7 @@ router.get("/:id", authorize, async(req, res, next) => {
             next('some error')
         }
     } catch (error){
-        console.log(error)
+        console.log('get id: ', error)
         next(error)
     }
 })
@@ -93,7 +93,7 @@ router.get(
   passport.authenticate("google"),
   async (req, res, next) => {
     try {
-      res.cookie("accessToken", req.user.tokens.accessToken, {
+      res.cookie("accessToken", req.author.tokens.accessToken, {
         httpOnly: true,
       })
       // res.cookie("refreshToken", req.author.tokens.refreshToken, {
@@ -103,6 +103,7 @@ router.get(
 
       res.status(200).redirect("http://localhost:3000/")
     } catch (error) {
+      console.log('google redirect: ', error)
       next(error)
     }
   }

@@ -34,6 +34,7 @@ passport.use(
           next(null, { user: createdUser, tokens })
         }
       } catch (error) {
+        console.log('oauth passport', error)
         next(error)
       }
     }

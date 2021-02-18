@@ -25,7 +25,7 @@ const authorsRouter = require("./services/Author")
 const port = process.env.PORT || 3002
 const publicFolderPath = join(__dirname, "../public")
 
-const whitelist = ["http://localhost:3000"]
+const whitelist = ["http://localhost:3000", "http://localhost:3001"]
 const corsOptions = {
   origin: (origin, callback) => {
     if (whitelist.indexOf(origin) !== -1 || !origin) {

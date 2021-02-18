@@ -11,7 +11,7 @@ const authenticate = async user => {
   
       return { token: newAccessToken}
     } catch (error) {
-      console.log(error)
+      console.log('authenticate: ', error)
       throw new Error(error)
     }
   }
