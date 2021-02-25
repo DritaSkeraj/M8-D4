@@ -84,8 +84,7 @@ router.post("/login", async (req, res, next) => {
 
 
 router.get(
-  "/googleLogin",
-  passport.authenticate("google", { scope: ["profile", "email"] })
+  "/googleLogin", passport.authenticate("google", { scope: ["profile", "email"] })
 )
 
 router.get(
@@ -93,7 +92,7 @@ router.get(
   passport.authenticate("google"),
   async (req, res, next) => {
     try {
-      res.cookie("accessToken", req.author.tokens.accessToken, {
+      res.cookie("accessToken", req.user.tokens.accessToken, {
         httpOnly: true,
       })
       // res.cookie("refreshToken", req.author.tokens.refreshToken, {

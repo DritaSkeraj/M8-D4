@@ -19,6 +19,7 @@ const authorize = async (req, res, next) => {
     next()
   } catch (e) {
     const err = new Error("Please authenticate")
+    console.log('here')
     err.httpStatusCode = 401
     next(err)
   }

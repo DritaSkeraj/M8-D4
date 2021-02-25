@@ -31,7 +31,8 @@ passport.use(
           const createdUser = new UserModel(newUser)
           await createdUser.save()
           const tokens = await authenticate(createdUser)
-          next(null, { user: createdUser, tokens })
+          done(null, { user: createdUser, tokens })
+          console.log('authing:::..tokens:::', tokens, 'createduser: ', createdUser)
         }
       } catch (error) {
         console.log('oauth passport', error)

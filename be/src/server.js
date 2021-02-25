@@ -48,10 +48,10 @@ server.use("/authors", authorsRouter)
 
 // ERROR HANDLERS
 
-server.use(notFoundHandler)
-server.use(unauthorizedHandler)
-server.use(forbiddenHandler)
-server.use(catchAllHandler)
+// server.use(notFoundHandler)
+// server.use(unauthorizedHandler)
+// server.use(forbiddenHandler)
+// server.use(catchAllHandler)
 
 console.log(listEndpoints(server))
 
